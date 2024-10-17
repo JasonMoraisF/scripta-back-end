@@ -17,4 +17,16 @@ public class Livro {
     @Column(name = "id_livro")
     private Long livroID;
     
+    @Column(name = "titulo")
+    private String titulo;
+
+    @Column(name = "autor")
+    private String autor;
+
+    @Column(name = "categoria")
+    private String categoria;
+
+    @Column(name = "disponibilidade")
+    private boolean disponibilidade;
+
 }
