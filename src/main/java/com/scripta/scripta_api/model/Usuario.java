@@ -28,5 +28,5 @@ public class Usuario {
 
     @Column(name = "tipo_usuario")
     @Enumerated
-    private TipoUsuario tipo_usuario;
+    private TipoUsuario tipoUsuario;
 }
