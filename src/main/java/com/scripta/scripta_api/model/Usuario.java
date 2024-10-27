@@ -29,4 +29,46 @@ public class Usuario {
     @Column(name = "tipo_usuario")
     @Enumerated
     private TipoUsuario tipoUsuario;
+
+    public Long getUsuarioID() {
+        return usuarioID;
+    }
+
+    public void setUsuarioID(Long usuarioID) {
+        this.usuarioID = usuarioID;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    
 }

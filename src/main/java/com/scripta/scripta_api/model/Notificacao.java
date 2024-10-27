@@ -34,9 +34,34 @@ public class Notificacao {
     @JsonFormat(pattern= "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataEnvio;
 
-
     @PrePersist
     protected void onCreate(){
         this.dataEnvio = LocalDateTime.now();
     }
+
+    public Long getNotificacaoID() {
+        return notificacaoID;
+    }
+
+    public void setNotificacaoID(Long notificacaoID) {
+        this.notificacaoID = notificacaoID;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
+    public LocalDateTime getDataEnvio() {
+        return dataEnvio;
+    }
+
+    public void setDataEnvio(LocalDateTime dataEnvio) {
+        this.dataEnvio = dataEnvio;
+    }
+
+    
 }
