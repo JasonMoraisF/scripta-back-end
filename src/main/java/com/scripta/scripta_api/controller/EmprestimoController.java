@@ -3,6 +3,7 @@ package com.scripta.scripta_api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,7 @@ public class EmprestimoController {
         return ResponseEntity.ok(emprestimo);
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Emprestimo> createEmprestimo(@RequestBody Emprestimo emprestimo) {
         Emprestimo newEmprestimo = emprestimoService.create(emprestimo);
         return ResponseEntity.ok(newEmprestimo);
@@ -47,9 +48,10 @@ public class EmprestimoController {
         return ResponseEntity.ok(updatedEmprestimo);
     }
 
-    @DeleteMapping("/{id}")
+   @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEmprestimo(@PathVariable Long id) {
-        emprestimoService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+    emprestimoService.delete(id);
+    return ResponseEntity.noContent().build();
+}
+
 }

@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum StatusSolicitacao {
     PENDENTE("pendente"),
-    ATURIZADO("aturizado"),
+    AUTORIZADO("autorizado"),
     CANCELADO("cancelado");
 
     
-    private String descricao;
+    private final String descricao;
 
     StatusSolicitacao(String descricao){
         this.descricao = descricao;

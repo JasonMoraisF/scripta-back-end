@@ -35,24 +35,24 @@ public class Emprestimo {
     @JoinColumn(name = "livro_id")
     private Livro livro;
 
-    @Column(name = "data_solicitacao")
+    @Column(name = "data_solicitacao", nullable=true)
     @CreatedDate
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataSolicitacao;
 
-    @Column(name = "status_solicitacao")
+    @Column(name = "status_solicitacao", nullable=true)
     @Enumerated(EnumType.STRING)
     private StatusSolicitacao statusSolicitacao;
 
-    @Column(name = "data_aprovacao")
+    @Column(name = "data_aprovacao", nullable=true)
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataAprovacao;
 
-    @Column(name = "data_rejeicao")
+    @Column(name = "data_rejeicao", nullable=true)
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataRejeicao;
 
-    @Column(name = "data_devolucao")
+    @Column(name = "data_devolucao", nullable=true)
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataDevolucao;
 
