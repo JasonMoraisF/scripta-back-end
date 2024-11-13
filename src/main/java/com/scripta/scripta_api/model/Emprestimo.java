@@ -27,33 +27,32 @@ public class Emprestimo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_emprestimo")
     private Long emprestimoID;
-
     
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id",  insertable = false, updatable = false)
     private Usuario usuario;
 
     @OneToOne
-    @JoinColumn(name = "livro_id")
+    @JoinColumn(name = "livro_id",  insertable = false, updatable = false)
     private Livro livro;
 
     @Column(name = "data_solicitacao", nullable=true)
     @CreatedDate
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataSolicitacao;
-
+    
     @Column(name = "status_solicitacao", nullable=true)
     @Enumerated(EnumType.STRING)
     private StatusSolicitacao statusSolicitacao;
-
+    
     @Column(name = "data_aprovacao", nullable=true)
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataAprovacao;
-
+    
     @Column(name = "data_rejeicao", nullable=true)
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataRejeicao;
-
+    
     @Column(name = "data_devolucao", nullable=true)
     @JsonFormat(pattern = "dd/MM/yyyy@HH:mm:ss")
     private LocalDateTime dataDevolucao;
@@ -62,30 +61,26 @@ public class Emprestimo {
     protected void onCreate() {
         this.dataSolicitacao = LocalDateTime.now();
     }
-
     
     public Long getEmprestimoID() {
         return emprestimoID;
     }
-
+    
     public void setEmprestimoID(Long emprestimoID) {
         this.emprestimoID = emprestimoID;
     }
-
+    
+    
     public Usuario getUsuario() {
         return usuario;
     }
-
+    
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
+    
     public Livro getLivro() {
         return livro;
-    }
-
-    public Long getLivroId(){
-        return livro.getLivroID(); 
     }
 
     public void setLivro(Livro livro) {
