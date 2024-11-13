@@ -41,19 +41,22 @@ public class EmprestimoService {
         return emprestimoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Empréstimo Não Encontrado"));
     }
 
-  public Emprestimo create(Emprestimo emprestimo) {
-      if (emprestimo.getDataSolicitacao() == null) {
-        Usuario usuario = usuarioRepository.findById(emprestimo.getUsuario().getUsuarioID()).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
-        Livro livro = livroRepository.findById(emprestimo.getLivro().getLivroID()).orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
+  public Emprestimo create(Emprestimo emprestimoRequest) {
+    Emprestimo emprestimo = new Emprestimo();
+
+    if (emprestimoRequest.getDataSolicitacao() == null) {
+        emprestimo.setLivro(emprestimoRequest.getLivro());
         emprestimo.setDataSolicitacao(LocalDateTime.now());
-        emprestimo.setDataDevolucao(emprestimo.getDataSolicitacao().plusDays(7));
+        emprestimo.setDataDevolucao(emprestimoRequest.getDataSolicitacao().plusDays(7));
         emprestimo.setStatusSolicitacao(StatusSolicitacao.AUTORIZADO);
-        emprestimo.setUsuario(usuario); 
-        emprestimo.setLivro(livro);
     }
     
-    return emprestimoRepository.save(emprestimo);
-}
+    Livro livro = livroRepository.findById(emprestimoRequest.getLivroId()).orElseThrow(() -> new EntityNotFoundException("Livro nao encontrado pelo ID: " + emprestimoRequest.getLivroId()));
+    Usuario usuario = usuarioRepository.findById(emprestimoRequest.getUsuarioID()).orElseThrow(() -> new EntityNotFoundException("Usuario nao encontrado pelo ID: " + emprestimoRequest.getUsuarioID()));
+
+    return emprestimoRepository.save(emprestimoRequest);
+}    
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Emprestimo update(Long id, Emprestimo emprestimoDetails) {

@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -27,11 +28,12 @@ public class Emprestimo {
     @Column(name = "id_emprestimo")
     private Long emprestimoID;
 
+    
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "livro_id")
     private Livro livro;
 
@@ -80,6 +82,10 @@ public class Emprestimo {
 
     public Livro getLivro() {
         return livro;
+    }
+
+    public Long getLivroId(){
+        return livro.getLivroID(); 
     }
 
     public void setLivro(Livro livro) {
