@@ -29,11 +29,11 @@ public class Emprestimo {
     private Long emprestimoID;
     
     @ManyToOne
-    @JoinColumn(name = "usuario_id",  insertable = false, updatable = false)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @OneToOne
-    @JoinColumn(name = "livro_id",  insertable = false, updatable = false)
+    @JoinColumn(name = "livro_id")
     private Livro livro;
 
     @Column(name = "data_solicitacao", nullable=true)
@@ -69,7 +69,6 @@ public class Emprestimo {
     public void setEmprestimoID(Long emprestimoID) {
         this.emprestimoID = emprestimoID;
     }
-    
     
     public Usuario getUsuario() {
         return usuario;

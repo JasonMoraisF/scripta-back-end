@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scripta.scripta_api.Services.EmprestimoService;
+import com.scripta.scripta_api.dto.EmprestimoDTO;
 import com.scripta.scripta_api.model.Emprestimo;
 
 @RestController
@@ -37,7 +37,7 @@ public class EmprestimoController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Emprestimo> createEmprestimo(@RequestBody Emprestimo emprestimo) {
+    public ResponseEntity<Emprestimo> createEmprestimo(@RequestBody EmprestimoDTO emprestimo) {
         Emprestimo newEmprestimo = emprestimoService.create(emprestimo);
         return ResponseEntity.ok(newEmprestimo);
     }

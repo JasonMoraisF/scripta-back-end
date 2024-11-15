@@ -20,8 +20,8 @@ public class Usuario {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "email", unique=true)
-    private String email;
+    @Column(name = "matricula", unique=true)
+    private String matricula;
 
     @Column(name = "senha")
     private String senha;
@@ -47,11 +47,11 @@ public class Usuario {
     }
 
     public String getEmail() {
-        return email;
+        return matricula;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.matricula = email;
     }
 
     public String getSenha() {

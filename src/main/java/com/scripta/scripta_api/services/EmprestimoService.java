@@ -1,18 +1,22 @@
-package com.scripta.scripta_api.Services;
+package com.scripta.scripta_api.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.scripta.scripta_api.dto.EmprestimoDTO;
 import com.scripta.scripta_api.model.Emprestimo;
 import com.scripta.scripta_api.model.StatusSolicitacao;
+import com.scripta.scripta_api.model.Usuario;
 import com.scripta.scripta_api.repository.EmprestimoRepository;
 import com.scripta.scripta_api.repository.LivroRepository;
 import com.scripta.scripta_api.repository.UsuarioRepository;
+import com.scripta.scripta_api.services.UsuarioService;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -24,13 +28,9 @@ public class EmprestimoService {
     private EmprestimoRepository emprestimoRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
-    @Autowired 
-    private LivroRepository livroRepository;
     
-    private StatusSolicitacao statusSolicitacao;
-
     public List<Emprestimo> findAll() {
         return emprestimoRepository.findAll();
     }
@@ -39,30 +39,11 @@ public class EmprestimoService {
         return emprestimoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Empréstimo Não Encontrado"));
     }
 
-    public Emprestimo create(Emprestimo emprestimoRequest) {
-        Emprestimo emprestimo = new Emprestimo();
-        LocalDateTime now = LocalDateTime.now();
-
-        // emprestimo.setLivro(emprestimoRequest.getLivro());
-        if (emprestimo.getDataSolicitacao() == null) {
-            emprestimo.setDataSolicitacao(now);
-            emprestimo.setDataDevolucao(now.plusDays(7));
-            emprestimo.setStatusSolicitacao(StatusSolicitacao.AUTORIZADO);
-        }else {
-            emprestimo.setDataDevolucao(emprestimo.getDataSolicitacao().plusDays(7));
-        }
-        
-        // Livro livro = livroRepository.findById(emprestimoRequest.getLivro().getLivroID()).orElseThrow(() -> new EntityNotFoundException("Livro nao encontrado pelo ID: " + emprestimoRequest.getLivro().getLivroID()));
-        // Usuario usuario = usuarioRepository.findById(emprestimoRequest.getUsuario().getUsuarioID()).orElseThrow(() -> new EntityNotFoundException("Usuario nao encontrado pelo ID: " + emprestimoRequest.getUsuario().getUsuarioID()));
-
-        // emprestimo.setLivro(livro);
-        // emprestimo.setUsuario(usuario);
-
-        return emprestimoRepository.save(emprestimo);
+    public Emprestimo create(EmprestimoDTO emprestimoRequest) {
+       Usuario usuario = 
+                                            
     }   
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Emprestimo update(Long id, Emprestimo emprestimoDetails) {
         Emprestimo existingEmprestimo = findById(id);

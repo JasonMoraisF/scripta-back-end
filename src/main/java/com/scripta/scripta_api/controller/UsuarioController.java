@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scripta.scripta_api.Services.UsuarioService;
 import com.scripta.scripta_api.model.Usuario;
+import com.scripta.scripta_api.services.UsuarioService;
 
 @RestController
 @RequestMapping("/api/usuarios")

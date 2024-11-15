@@ -1,4 +1,4 @@
-package com.scripta.scripta_api.Services;
+package com.scripta.scripta_api.services;
 
 import java.util.List;
 

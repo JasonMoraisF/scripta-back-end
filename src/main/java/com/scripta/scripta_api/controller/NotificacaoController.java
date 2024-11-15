@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scripta.scripta_api.Services.NotificacaoService;
 import com.scripta.scripta_api.model.Notificacao;
+import com.scripta.scripta_api.services.NotificacaoService;
 
 @RestController
 @RequestMapping("/api/notificacoes")

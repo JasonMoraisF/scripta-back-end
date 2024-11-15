@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scripta.scripta_api.Services.LivroService;
 import com.scripta.scripta_api.model.Livro;
+import com.scripta.scripta_api.services.LivroService;
 
 @RestController
 @RequestMapping("/api/livros")
