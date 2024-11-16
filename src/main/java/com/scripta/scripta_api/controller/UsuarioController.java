@@ -35,12 +35,12 @@ public class UsuarioController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Usuario Create(@RequestBody Usuario user){
-        return userServ.Create(user);
+        return userServ.create(user);
     }
 
     @PutMapping("/{id}")
     public Usuario update(@PathVariable Long id,@RequestBody Usuario user){
-        return userServ.Update(id, user);
+        return userServ.update(id, user);
     }
 
     @DeleteMapping("/{id}")

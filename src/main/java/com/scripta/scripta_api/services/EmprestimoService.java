@@ -13,6 +13,7 @@ import com.scripta.scripta_api.dto.EmprestimoDTO;
 import com.scripta.scripta_api.model.Emprestimo;
 import com.scripta.scripta_api.model.StatusSolicitacao;
 import com.scripta.scripta_api.model.Usuario;
+import com.scripta.scripta_api.model.Livro;
 import com.scripta.scripta_api.repository.EmprestimoRepository;
 import com.scripta.scripta_api.repository.LivroRepository;
 import com.scripta.scripta_api.repository.UsuarioRepository;
@@ -30,6 +31,9 @@ public class EmprestimoService {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private LivroService livroService;
+
     
     public List<Emprestimo> findAll() {
         return emprestimoRepository.findAll();
@@ -40,7 +44,17 @@ public class EmprestimoService {
     }
 
     public Emprestimo create(EmprestimoDTO emprestimoRequest) {
-       Usuario usuario = 
+        Usuario usuario = usuarioService.findByID(emprestimoRequest.getUsuarioID());
+           
+        Livro livro = livroService.findById(emprestimoRequest.getLivroID());
+
+        Emprestimo emprestimo = new Emprestimo();
+        emprestimo.setUsuario(usuario);
+        emprestimo.setLivro(livro);
+        emprestimo.setStatusSolicitacao(StatusSolicitacao.AUTORIZADO);
+        emprestimo.setDataAprovacao(LocalDateTime.now());
+        
+        return emprestimo;
                                             
     }   
 

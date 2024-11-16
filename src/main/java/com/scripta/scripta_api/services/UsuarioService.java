@@ -1,4 +1,4 @@
-package com.scripta.scripta_api.Services;
+package com.scripta.scripta_api.services;
 
 import java.util.List;
 
@@ -25,11 +25,11 @@ public class UsuarioService {
         return userRep.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario Não Encontrado"));
     }
     
-    public Usuario Create(Usuario user){
+    public Usuario create(Usuario user){
         return userRep.save(user);
     }
 
-    public Usuario Update(Long id, Usuario userDetails){
+    public Usuario update(Long id, Usuario userDetails){
         Usuario existingUser = userRep.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario Não Encontrado"));
         existingUser.setEmail(userDetails.getEmail() != null ? userDetails.getEmail() : existingUser.getEmail());
         existingUser.setNome(userDetails.getNome() != null ? userDetails.getNome() : existingUser.getNome());
