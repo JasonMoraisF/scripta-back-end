@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.scripta.scripta_api.dto.EmprestimoDTO;
 import com.scripta.scripta_api.model.Emprestimo;
+import com.scripta.scripta_api.services.EmprestimoService;
 
 @RestController
 @RequestMapping("/api/emprestimos")
@@ -42,7 +43,6 @@ public class EmprestimoController {
         return ResponseEntity.ok(newEmprestimo);
     }
     
-
     @PutMapping("/{id}")
     public ResponseEntity<Emprestimo> updateEmprestimo(@PathVariable Long id, @RequestBody Emprestimo emprestimoDetails) {
         Emprestimo updatedEmprestimo = emprestimoService.update(id, emprestimoDetails);
