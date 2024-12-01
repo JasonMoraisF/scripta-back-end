@@ -69,4 +69,9 @@ public class EmprestimoController {
         return ResponseEntity.ok(emprestimos); // Retorna 200 com a lista de empréstimos
     }
 
+    @CrossOrigin(origins = "*")
+    @PutMapping("/{id}/renovar")
+    public ResponseEntity<String> renovarEmprestimo(@PathVariable Long id) {
+        return emprestimoService.renovarEmprestimo(id);
+    }
 }

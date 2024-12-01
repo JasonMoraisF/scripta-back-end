@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -95,6 +96,28 @@ public class EmprestimoService {
     public List<Emprestimo> buscarEmprestimosPorUsuario(String matricula) {
         Usuario user = usuarioRepository.findByMatricula(matricula);
         return emprestimoRepository.findByUsuario(user);
+    }
+
+    //metodo de renovação - atualização da data de devolução
+        public ResponseEntity<String> renovarEmprestimo(Long emprestimoID) {
+        // Busca o empréstimo pelo ID
+        Emprestimo emprestimo = emprestimoRepository.findById(emprestimoID)
+                .orElseThrow(() -> new EntityNotFoundException("Empréstimo Não Encontrado"));
+
+        LocalDateTime dataDevolucaoAtual = emprestimo.getDataDevolucao();
+        LocalDateTime dataAtual = LocalDateTime.now();
+
+        // Se a data de devolução já passou, o usuário não pode renovar
+        if (dataDevolucaoAtual.isBefore(dataAtual)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("O prazo para renovação já expirou.");
+        }
+
+        LocalDateTime novaDataDevolucao = dataDevolucaoAtual.plusDays(7);
+        emprestimo.setDataDevolucao(novaDataDevolucao);
+
+        emprestimoRepository.save(emprestimo);
+
+        return ResponseEntity.ok("Empréstimo renovado com sucesso! Nova data de devolução: " + novaDataDevolucao);
     }
 
 }// class
